@@ -29,7 +29,7 @@ Threads live in the `ted` directory of your desk:
 
 From the dojo, `ted/baz.hoon` can be run with `-baz`, and `ted/foo/bar.hoon` with `-foo-bar`.
 
-<small>**NOTE:** When the dojo sees the `-` prefix it automatically handles creating a thread ID, composing the argument, poking the `spider` gall agent and subscribing for the result. Running a thread from another context (eg. a gall agent) requires doing these things explicitly and is outside the scope of this particular tutorial.</small>
+**NOTE:** When the dojo sees the `-` prefix it automatically handles creating a thread ID, composing the argument, poking the `spider` gall agent and subscribing for the result. Running a thread from another context (eg. a gall agent) requires doing these things explicitly and is outside the scope of this particular tutorial.
 
 ## Libraries and Structures
 
@@ -109,7 +109,7 @@ Save the above code as a file in `ted/mythread.hoon` and `|commit` it. Run it wi
 [~ 'foo']
 ```
 
-<small>NOTE: The dojo wraps arguments in a unit so that's why it's `[~ 'foo']` rather than just `foo`.</small>
+NOTE: The dojo wraps arguments in a unit so that's why it's `[~ 'foo']` rather than just `foo`.
 
 ## Analysis
 
@@ -172,7 +172,7 @@ Finally we call `pure` with the gate input `arg` as its argument. Since `arg` is
 
 Next we'll look at the third arm of a strand: `bind`.
 
-<a href="#" style="font-size:1.875em;">Previous</a>
+## [Previous](#)
 
 <a href="2_micgal-and-bind.md" style="font-size:1.875em;">Next</a>
 
