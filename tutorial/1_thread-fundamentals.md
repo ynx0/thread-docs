@@ -172,6 +172,6 @@ Finally we call `pure` with the gate input `arg` as its argument. Since `arg` is
 
 Next we'll look at the third arm of a strand: `bind`.
 
-<a href="#" style="float:left;font-size:1.875em;">Previous</a>
-<a href="2_micgal-and-bind.md" style="float:right;font-size:1.875em;">Next</a>
+<a href="#" style="font-size:1.875em;">Previous</a> |
+<a href="2_micgal-and-bind.md" style="font-size:1.875em;">Next</a>
 
