@@ -84,5 +84,4 @@ To use `strandio` functions we've imported the library with `/+  strandio`.
 
 Note how we've set the face and return type of the functions like `s=ship`, `t=@da` and `~`. You can see how `(pure:m !>([s t]))` at the end of the pipeline has access to the values returned by the previous functions.
 
-<a href="1_thread-fundamentals.md" style="float:left;font-size:1.875em;">Previous</a>
-<a href="3_success-and-failure.md" style="float:right;font-size:1.875em;">Next</a>
+# [Previous](1_thread-fundamentals.md) | [Next](3_success-and-failure.md)
