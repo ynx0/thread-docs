@@ -47,11 +47,11 @@ There are three files that matter:
 
 `+$  thread  $-(vase _*form:(strand ,vase))`
 
-That is, a gate which takes a `vase` and returns the `form` of a `strand` that produces a `vase`. Internally it will compose one or more `strand`s and is itself a `strand`. At this stage this won't be too meaningful, so let's look at its parts in detail.
+That is, a gate which takes a `vase` and returns the `form` of a `strand` that produces a `vase`. At this stage this won't be too meaningful, so let's look at its parts in detail.
 
 ## Strands
 
-A strand is a function of `strand-input:strand -> output:strand`. You can see the details of `strand-input` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L2-L21) and `output:strand` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L23-L48). The input and output is handled automatically by spider so practically you don't need to worry about the details but it's useful to have a quick look.
+A strand is a function of `strand-input:strand -> output:strand`. You can see the details of `strand-input` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L2-L21) and `output:strand` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L23-L48). At this stage you don't need to know the nitty-gritty but it's helpful to have a quick look through. We'll discuss these things in more detail later.
 
 A strand is a core that has three arms:
 - `form`

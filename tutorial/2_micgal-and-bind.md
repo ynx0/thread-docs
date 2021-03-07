@@ -84,4 +84,6 @@ To use `strandio` functions we've imported the library with `/+  strandio`.
 
 Note how we've set the face and return type of the functions like `s=ship`, `t=@da` and `~`. You can see how `(pure:m !>([s t]))` at the end of the pipeline has access to the values returned by the previous functions.
 
-# [Previous](1_thread-fundamentals.md) | [Next](3_success-and-failure.md)
+Next we'll look in more detail at success, failure, and other strand results.
+
+# [Previous](1_thread-fundamentals.md) | [Next](3_strand-output.md)
