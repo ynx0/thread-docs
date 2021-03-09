@@ -7,13 +7,14 @@ Here's the simple thread from part 1, except the guts of it has been moved into 
 ```
 /-  spider 
 =,  strand=strand:spider 
+=>
 |%
 ++  custom
   |=  arg=vase
   =/  m  (strand ,vase)
   ^-  form:m
   (pure:m arg)
---  
+--
 ^-  thread:spider 
 |=  arg=vase 
 =/  m  (strand ,vase) 
