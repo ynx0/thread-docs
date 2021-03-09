@@ -28,9 +28,9 @@ j
 
 ## bind
 
-Bind alone must be specialised like `(bind:m ,<type>)` and it takes two arguments. The first argument is a gate that returns the `form` of a strand which produces `<type>`. The second argument is a gate whose sample is `<type>` and which returns a `form`. Since you'll invariably use it in conjunction with micgal, `;<  <type>  bind:m  ...` will specify the type for both.
+Bind by itself must be specialised like `(bind:m ,<type>)` and it takes two arguments. The first argument is a function that returns the `form` of a strand which produces `<type>`. The second argument is a gate whose sample is `<type>` and which returns a `form`. Since you'll invariably use it in conjunction with micgal, `;<  <type>  bind:m  ...` will both specialise `bind` and specify the gate's sample.
 
-Bind calls the first gate then, if it succeeded, calls the second gate with the result of the first as its sample. If the first gate failed, it will instead just return an error message and not bother calling the next gate. So it's essentially "if strand A then strand B".
+Bind calls the first function then, if it succeeded, calls the second gate with the result of the first as its sample. If the first function failed, it will instead just return an error message and not bother calling the next gate. So it's essentially "if strand A then strand B".
 
 Since the second gate may itself contain another `;<  <type>  bind:m  ...`, you can see how this allows you to glue together an arbitrarily large pipeline, where subsequent gates depend on the previous ones.
 
