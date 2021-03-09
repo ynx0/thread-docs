@@ -17,8 +17,6 @@ Here's the simple thread from part 1, except the guts of it has been moved into 
 --
 ^-  thread:spider 
 |=  arg=vase 
-=/  m  (strand ,vase) 
-^-  form:m 
 (custom arg)
 ```
 
