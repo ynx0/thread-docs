@@ -120,4 +120,4 @@ We've added formatting and structure arms like:
 
 After that it's just some ordinary list logic and printing.
 
-## [Return Home](index.md)
+## [Return Home](../index.md)
