@@ -62,4 +62,4 @@ You can subscribe to a thread on `/thread/[tid]/path`. Note this is for facts se
 [%pass /awaiting/[tid]/some-path %agent [our.bowl %spider] %watch /thread/[tid]/some-path]
 ```
 
-
+## [Return Home](index.md)

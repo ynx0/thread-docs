@@ -229,3 +229,5 @@ Finally we test whether the thread produced a `%thread-done` or a `%thread-fail`
 * `%spider-stop` is the mark that tells spider to kill a thread.
 * `tid` is the tid of the thread to kill
 * `%.y` tells spider to suppress traceback in the result of the killed thread. If you give it `%.n` it will include the traceback.
+
+## [Return Home](../index.md)

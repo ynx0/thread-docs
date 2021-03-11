@@ -77,3 +77,5 @@ The first thread (tester.hoon) just starts the second thread and pokes it with a
 The second thread (tested.hoon) has a `main-loop` with a list of three `take-poke` strands. As you can see it's the third one expecting a mark of `%baz` but yet it still successfully prints the message. This is because it tried the previous two which each saw the wrong mark and said `%skip`.
 
 Notice we've wrapped the `take-poke`s in `handle` to convert the `%skip`s into `[%fail %ignore ~]`s that `main-loop` can handle.
+
+## [Return Home](../index.md)
