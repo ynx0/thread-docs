@@ -17,6 +17,8 @@ These docs walk through the fundamental things you need to know to write threads
 
 ## Gall
 
+...
+
 ## How-tos
 
 - [Grab some JSON from a URL](examples/get-json.md)
