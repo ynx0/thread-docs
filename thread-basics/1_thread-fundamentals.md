@@ -162,5 +162,6 @@ Finally we call `pure` with the gate input `arg` as its argument. Since `arg` is
 
 Next we'll look at the third arm of a strand: `bind`.
 
-# [Previous](#) | [Next](2_micgal-and-bind.md)
+# [Next](2_micgal-and-bind.md)
+## [Return Home](../index.md)
 
