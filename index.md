@@ -21,10 +21,8 @@ These docs walk through the fundamental things you need to know to write threads
 
 - [Grab some JSON from a URL](examples/get-json.md)
    - Here's an example of chaining a couple of external http requests for JSON.
-
 - [Start a child thread](examples/start-thread-from-thread.md)
    - Starting and managing child threads.
-
 - [Main Loop](examples/main-loop.md)
    - How to use `main-loop` in `strandio` to try an input against multiple functions.
 
