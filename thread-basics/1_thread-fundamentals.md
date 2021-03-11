@@ -60,9 +60,9 @@ Strands are the building blocks of threads. A thread will typically compose mult
 A strand is a function of `strand-input:strand -> output:strand` and is define in `/lib/strand/hoon`. You can see the details of `strand-input` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L2-L21) and `output:strand` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L23-L48). At this stage you don't need to know the nitty-gritty but it's helpful to have a quick look through. We'll discuss these things in more detail later.
 
 A strand is a core that has three important arms:
-- `form`
-- `pure`
-- `bind`
+- `form` - the mold of the strand
+- `pure` - produces a strand that does nothing except return a value
+- `bind` - monadic bind, like `then` in javascript promises 
 
 We'll discuss each of these arms later.
 
