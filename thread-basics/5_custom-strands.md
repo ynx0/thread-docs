@@ -68,4 +68,4 @@ thread failed: %not-foo
 This is most useful when you give `strand-input` a face like `|=  tin=strand-input:strand` and then test `in.tin` for whatever pokes or signs you're expecting.
 
 # [Previous](4_strand-output.md)
-
+## [Return Home](../index.md)

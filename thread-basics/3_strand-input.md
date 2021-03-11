@@ -98,3 +98,4 @@ Various functions in `strandio` will check `input` and conditionally do things b
 You can of course also write your own function to handle inputs.
 
 # [Previous](2_micgal-and-bind.md) | [Next](4_strand-output.md)
+## [Return Home](../index.md)

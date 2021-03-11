@@ -91,3 +91,4 @@ You can see how `pure` has access to the results of previous strands in the pipe
 Next we'll look at `strand-input` in more detail.
 
 # [Previous](1_thread-fundamentals.md) | [Next](3_strand-input.md)
+## [Return Home](../index.md)
