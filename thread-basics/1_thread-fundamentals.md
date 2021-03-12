@@ -164,4 +164,3 @@ Next we'll look at the third arm of a strand: `bind`.
 
 # [Next](2_micgal-and-bind.md)
 ## [Return Home](../index.md)
-
