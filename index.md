@@ -16,8 +16,10 @@ These docs walk through the fundamental things you need to know to write threads
    - Notes on writing your own strands rather than just using ready-made ones.
 
 ## Gall
+These docs walk through the basics of interacting with threads from gall agents.
 
-...
+1. [Start a thread](gall/1_start-thread.md)
+
 
 ## How-tos
 
