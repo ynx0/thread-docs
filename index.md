@@ -19,9 +19,10 @@ These docs walk through the fundamental things you need to know to write threads
 These docs walk through the basics of interacting with threads from gall agents.
 
 1. [Start a thread](gall/1_start-thread.md)
+2. [Subscribe for result](gall/2_subscribe-for-result.md)
 
 
-## How-tos
+## Examples
 
 - [Grab some JSON from a URL](examples/get-json.md)
    - Here's an example of chaining a couple of external http requests for JSON.
