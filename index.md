@@ -20,7 +20,8 @@ These docs walk through the basics of interacting with threads from gall agents.
 
 1. [Start a thread](gall/1_start-thread.md)
 2. [Subscribe for result](gall/2_subscribe-for-result.md)
-
+3. [Subscribe for facts](gall/3_subscribe-for-facts.md)
+4. [Stop a thread](gall/4_stop-thread.md)
 
 ## Examples
 
