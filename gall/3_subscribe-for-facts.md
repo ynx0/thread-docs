@@ -1,4 +1,6 @@
-# Subscribe for result
+# Subscribe for Facts
+
+#### thread-starter.hoon
 
 ```
 /+  default-agent, dbug
@@ -26,6 +28,7 @@
       :~
         [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
         [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-start !>(start-args)]
+        [%pass /thread/updates/[ta-now] %agent [our.bowl %spider] %watch /thread/[tid]/updates]
       ==
     ==
   ==
@@ -55,6 +58,10 @@
          =/  res  (trip !<(term q.cage.sign))
          %-  (slog leaf+"Result: {res}" ~)
          `this
+           %update
+         =/  msg  !<  tape  q.cage.sign
+         %-  (slog leaf+msg ~)
+         `this
        ==
      ==
    ==
@@ -63,13 +70,24 @@
 --
 ```
 
+#### test-thread.hoon
+
 ```
 /-  spider 
+/+  *strandio
 =,  strand=strand:spider 
 ^-  thread:spider 
 |=  arg=vase 
 =/  m  (strand ,vase) 
 ^-  form:m
+;<  =path   bind:m  take-watch
+;<  ~       bind:m  (send-raw-card [%give %fact ~[path] %update !>("message 1")])
+;<  ~       bind:m  %-  send-raw-cards
+                    :~  [%give %fact ~[path] %update !>("message 2")]
+                        [%give %fact ~[path] %update !>("message 3")]
+                        [%give %fact ~[path] %update !>("message 4")]
+                    ==
+;<  ~       bind:m  (send-raw-card [%give %kick ~[path] ~])
 |=  strand-input:strand
 ?+    q.arg  [~ %fail %not-foo ~]
     %foo
@@ -77,5 +95,5 @@
 ==
 ```
 
-# [Previous](1_start-thread.md) | [Next](3_subscribe-for-facts.md)
+# [Previous](2_subscribe-for-result.md) | [Next](4_stop-thread.md)
 ## [Return Home](../index.md)

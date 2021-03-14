@@ -1,4 +1,6 @@
-# Subscribe for result
+# Stop a thread
+
+#### thread-starter.hoon
 
 ```
 /+  default-agent, dbug
@@ -26,6 +28,8 @@
       :~
         [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
         [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-start !>(start-args)]
+        [%pass /thread/updates/[ta-now] %agent [our.bowl %spider] %watch /thread/[tid]/updates]
+        [%pass /thread-stop/[ta-now] %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y])]
       ==
     ==
   ==
@@ -52,10 +56,26 @@
          %-  (slog leaf+"Thread failed: {(trip p.err)}" q.err)
          `this
            %thread-done
+         ?:  =(q.cage.sign *vase)
+           %-  (slog leaf+"Thread cancelled nicely" ~)
+         `this
          =/  res  (trip !<(term q.cage.sign))
          %-  (slog leaf+"Result: {res}" ~)
          `this
+           %update
+         =/  msg  !<  tape  q.cage.sign
+         %-  (slog leaf+msg ~)
+         `this
        ==
+     ==
+       %thread-stop
+     ?+    -.sign  (on-agent:def wire sign)
+         %poke-ack
+       ?~  p.sign
+         %-  (slog leaf+"Thread cancelled successfully" ~)
+         `this
+       %-  (slog leaf+"Thread failed to stop" u.p.sign)
+       `this
      ==
    ==
 ++  on-arvo   on-arvo:def
@@ -63,13 +83,25 @@
 --
 ```
 
+#### test-thread.hoon
+
 ```
 /-  spider 
+/+  *strandio
 =,  strand=strand:spider 
 ^-  thread:spider 
 |=  arg=vase 
 =/  m  (strand ,vase) 
 ^-  form:m
+;<  =path   bind:m  take-watch
+;<  ~       bind:m  (send-raw-card [%give %fact ~[path] %update !>("message 1")])
+;<  ~       bind:m  %-  send-raw-cards
+                    :~  [%give %fact ~[path] %update !>("message 2")]
+                        [%give %fact ~[path] %update !>("message 3")]
+                        [%give %fact ~[path] %update !>("message 4")]
+                    ==
+;<  ~       bind:m  (send-raw-card [%give %kick ~[path] ~])
+;<  ~       bind:m  (sleep ~m1)
 |=  strand-input:strand
 ?+    q.arg  [~ %fail %not-foo ~]
     %foo
@@ -77,5 +109,5 @@
 ==
 ```
 
-# [Previous](1_start-thread.md) | [Next](3_subscribe-for-facts.md)
+# [Previous](3_subscribe-for-facts.md)
 ## [Return Home](../index.md)

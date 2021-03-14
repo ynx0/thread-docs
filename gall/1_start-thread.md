@@ -5,8 +5,9 @@ Here's an example of a barebones gall agent that just starts a thread:
 #### thread-starter.hoon
 
 ```
-/+  default-agent
+/+  default-agent, dbug
 =*  card  card:agent:gall
+%-  agent:dbug
 ^-  agent:gall
 |_  =bowl:gall
 +*  this      .
@@ -15,25 +16,22 @@ Here's an example of a barebones gall agent that just starts a thread:
 ++  on-init  on-init:def
 ++  on-save  on-save:def
 ++  on-load  on-load:def
-++  on-poke
+++  on-poke  
   |=  [=mark =vase]
   ^-  (quip card _this)
   ?+    mark  (on-poke:def mark vase)
       %noun
     ?+    q.vase  (on-poke:def mark vase)
-        (pair %start term)
-      =/  thread  q.q.vase
+        (pair term term)
       =/  tid  `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
+      =/  ta-now  `@ta`(scot %da now.bowl)
+      =/  start-args  [~ `tid p.q.vase !>(q.q.vase)]
       :_  this
-      :~  
-        :*  %pass  /thread-start/[(scot %da now.bowl)]
-            %agent  [our.bowl %spider] 
-            %poke  %spider-start  !>  [~ `tid thread !>(~)]
-        ==
+      :~
+        [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-start !>(start-args)]
       ==
     ==
   ==
-::
 ++  on-watch  on-watch:def
 ++  on-leave  on-leave:def
 ++  on-peek   on-peek:def
@@ -41,7 +39,7 @@ Here's an example of a barebones gall agent that just starts a thread:
    |=  [=wire =sign:agent:gall]
    ^-  (quip card _this)
    ?+    -.wire  (on-agent:def wire sign)
-       %thread-start
+       %thread
      ?+    -.sign  (on-agent:def wire sign)
          %poke-ack
        ?~  p.sign
@@ -66,22 +64,25 @@ And here's a minimal thread to test it with:
 ^-  thread:spider 
 |=  arg=vase 
 =/  m  (strand ,vase) 
-^-  form:m 
-(pure:m arg)
+^-  form:m
+|=  strand-input:strand
+?+    q.arg  [~ %fail %not-foo ~]
+    %foo
+  [~ %done arg]
+==
 ```
-
 
 Save them as `/app/thread-starter.hoon` and `/ted/test-thread.hoon` respectively, `|commit %home`, and start the app with `|start %thread-starter`.
 
-Now you can poke it with a pair of `[%start %test-thread]` like:
+Now you can poke it with a pair of thread name and argument like:
 
 ```
-:thread-starter [%start %test-thread]
+:thread-starter [%test-thread %foo]
 ```
 
 You should see `Thread started successfully`.
 
-Now try poking it with `[%start %fake-thread]`, you should see something like:
+Now try poking it with `[%fake-thread %foo]`, you should see something like:
 
 ```
 Thread failed to start
@@ -109,15 +110,14 @@ Thread failed to start
 We can ignore the input logic, here's the important part:
 
 ```
-=/  thread  q.q.vase
 =/  tid  `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
-  :_  this
-    :~  
-      :*  %pass  /thread-start/[(scot %da now.bowl)]
-          %agent  [our.bowl %spider] 
-          %poke  %spider-start  !>  [~ `tid thread !>(~)]
-      ==
-    ==
+:_  this
+:~
+  :*  %pass  /thread
+      %agent  [our.bowl %spider]
+      %poke  %spider-start  !>  [~ `tid p.q.vase !>(q.q.vase)]
+  ==
+==
 ```
 
 You can generate a tid any way you like, just make sure it's unique. Here we just use the hash of some entropy prefixed with `thread_`.
@@ -129,7 +129,7 @@ Then it's just a poke to `%spider` with the mark `%spider-start` and a vase cont
    |=  [=wire =sign:agent:gall]
    ^-  (quip card _this)
    ?+    -.wire  (on-agent:def wire sign)
-       %thread-start
+       %thread
      ?+    -.sign  (on-agent:def wire sign)
          %poke-ack
        ?~  p.sign

@@ -2,6 +2,11 @@
 
 ## Spider
 
+- [Start a thread](#start-thread)
+- [Stop a thread](#stop-thread)
+- [Subscribe to thread result](#subscribe-to-thread-result)
+- [Subscribe to thread](#subscribe-to-thread)
+
 ### Start thread
 
 Poke `spider` with mark `%spider-start` and a vase containing `start-args`:
@@ -21,7 +26,7 @@ Where:
 #### Example
 
 ```
-[%pass /poke %agent [our.bowl %spider] %poke %spider-start !>([~ `tid %foo !>(~)])]
+[%pass /some-path %agent [our.bowl %spider] %poke %spider-start !>([~ `tid %foo !>(~)])]
 ```
 
 ### Stop thread
@@ -29,12 +34,12 @@ Where:
 Poke `spider` with mark `%spider-stop` and a vase containing `[tid ?]`, where:
 
 - `tid` - the `tid` of the thread you want to stop
-- `?` - whether to suppress a traceback in its result.
+- `?` - whether thread should end nicely. If `%.y` it'll end with mark `%thread-done` and the bunt value of a vase. If `%.n` it'll end with mark `%thread-fail` and a `[term tang]` where `term` is `%cancelled` and `tang` is `~`.
 
 #### Example
 
 ```
-[%pass /poke %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y)]
+[%pass /some-path %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y)]
 ```
 
 ### Subscribe to thread result
@@ -49,7 +54,7 @@ The result will have a mark of either `%thread-fail` or `%thread-done`.
 #### Example
 
 ```
-[%pass /awaiting-result/[tid] %agent [our.bowl %spider] %watch /thread-result/[tid]]
+[%pass /some-path %agent [our.bowl %spider] %watch /thread-result/[tid]]
 ```
 
 ### Subscribe to thread
@@ -59,7 +64,7 @@ You can subscribe to a thread on `/thread/[tid]/path`. Note this is for facts se
 #### Example
 
 ```
-[%pass /awaiting/[tid]/some-path %agent [our.bowl %spider] %watch /thread/[tid]/some-path]
+[%pass /some-path %agent [our.bowl %spider] %watch /thread/[tid]/thread-path]
 ```
 
 ## [Return Home](index.md)
