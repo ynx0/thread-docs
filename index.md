@@ -23,7 +23,7 @@ These docs walk through the basics of interacting with threads from gall agents.
 3. [Subscribe for facts](gall/3_subscribe-for-facts.md)
 4. [Stop a thread](gall/4_stop-thread.md)
 
-## Examples
+## How-tos & Examples
 
 - [Grab some JSON from a URL](examples/get-json.md)
    - Here's an example of chaining a couple of external http requests for JSON.
