@@ -1,5 +1,8 @@
 # Subscribe for result
 
+Here we've added an extra card to subscribe for the result and a couple of lines in on-agent to test if it succeeded:
+
+#### thread-starter.hoon
 ```
 /+  default-agent, dbug
 =*  card  card:agent:gall
@@ -63,6 +66,8 @@
 --
 ```
 
+#### test-thread.hoon
+
 ```
 /-  spider 
 =,  strand=strand:spider 
@@ -76,6 +81,50 @@
   [~ %done arg]
 ==
 ```
+
+Save these, `|commit` and then poke the app with `:thread-starter [%test-thread %foo]`. You should see:
+
+```
+Thread started successfully
+Result: foo
+```
+
+Now try `thread-starter [%test-thread %bar]`. You should see:
+
+```
+Thread started successfully
+Thread failed: not-foo
+```
+
+## Analysis
+
+In `on-poke` we've added an extra card *before* the `%spider-start` poke to subscribe for the result:
+
+```
+[%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
+```
+
+If successful the thread will return a cage with a mark of `%thread-done` and a vase containing the result.
+
+If the thread failed it will return a cage with a mark of `%thread-fail` and a vase containing `[term tang]` where `term` is an error message and `tang` is a traceback. In our case our thread fails with error `%not-foo` when its argument is not `%foo`.
+
+Note that spider will automatically `%kick` us from the subscription after ending the thread and returning the result.
+
+```
+  %fact
+?+    p.cage.sign  (on-agent:def wire sign)
+    %thread-fail
+  =/  err  !<  (pair term tang)  q.cage.sign
+  %-  (slog leaf+"Thread failed: {(trip p.err)}" q.err)
+  `this
+    %thread-done
+  =/  res  (trip !<(term q.cage.sign))
+  %-  (slog leaf+"Result: {res}" ~)
+  `this
+==
+```
+
+Here in on-agent we've added a test for `%thread-fail` or `%thread-done` and print the appropriate result.
 
 # [Previous](1_start-thread.md) | [Next](3_subscribe-for-facts.md)
 ## [Return Home](../index.md)

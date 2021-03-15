@@ -1,5 +1,7 @@
 # Stop a thread
 
+Here we've added one last card to `on-poke` to stop the thread and a little extra to `on-agent` to print things for demonstrative purposes.
+
 #### thread-starter.hoon
 
 ```
@@ -83,6 +85,8 @@
 --
 ```
 
+We've also added a `sleep` to the thread to keep it running for demonstration.
+
 #### test-thread.hoon
 
 ```
@@ -108,6 +112,32 @@
   [~ %done arg]
 ==
 ```
+
+Save these, `|commit`, and run with `:thread-starter [%test-thread %foo]`. You should see:
+
+```
+Thread started successfully
+message 1
+message 2
+message 3
+message 4
+Thread cancelled successfully
+Thread cancelled nicely
+```
+
+Now, try changing the vase in our new card from `!>([tid %.y])` to `!>([tid %.n])`. Save, `|commit`, and run again. You should see:
+
+```
+Thread started successfully
+message 1
+message 2
+message 3
+message 4
+Thread cancelled successfully
+Thread failed: cancelled
+```
+
+## Analysis
 
 # [Previous](3_subscribe-for-facts.md)
 ## [Return Home](../index.md)
