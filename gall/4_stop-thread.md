@@ -139,5 +139,13 @@ Thread failed: cancelled
 
 ## Analysis
 
+The card we've added to our agent:
+
+```
+[%pass /thread-stop/[ta-now] %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y])]
+```
+
+...pokes spider with mark `%spider-stop` and a vase containing the tid of the thread we want to stop and a `?`. The `?` specifies whether to end it nicely or not. If `%.y` it will end with `%thread-done` and a vase containing `*vase`. If `%.n` it will end with `%thread-fail` and a vase containing `[term tang]` where `term` is `%cancelled` and `tang` is `~`. You can see the difference in our tests above.
+
 # [Previous](3_subscribe-for-facts.md)
 ## [Return Home](../index.md)
