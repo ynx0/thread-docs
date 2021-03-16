@@ -22,6 +22,7 @@ These docs walk through the basics of interacting with threads from gall agents.
 2. [Subscribe for result](gall/2_subscribe-for-result.md)
 3. [Subscribe for facts](gall/3_subscribe-for-facts.md)
 4. [Stop a thread](gall/4_stop-thread.md)
+5. [Poke a thread](gall/5_poke-thread.md)
 
 ## How-tos & Examples
 
@@ -31,6 +32,8 @@ These docs walk through the basics of interacting with threads from gall agents.
    - Starting and managing child threads.
 - [Main Loop](examples/main-loop.md)
    - How to use `main-loop` in `strandio` to try an input against multiple functions.
+- [Poke an agent](examples/poke-agent.md)
+   - Example of poking an agent from a thread.
 
 ## [Reference](reference.md)
 Basic reference information. For usage of particular `strandio` functions just refer directly to `/lib/strandio/hoon` since they're largely self-explanatory.

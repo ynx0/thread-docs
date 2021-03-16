@@ -6,6 +6,7 @@
 - [Stop a thread](#stop-thread)
 - [Subscribe to thread result](#subscribe-to-thread-result)
 - [Subscribe to thread](#subscribe-to-thread)
+- [Poke a thread](#poke-thread)
 
 ### Start thread
 
@@ -66,5 +67,12 @@ You can subscribe to a thread on `/thread/[tid]/path`. Note this is for facts se
 ```
 [%pass /some-path %agent [our.bowl %spider] %watch /thread/[tid]/thread-path]
 ```
+
+### Poke Thread
+
+To poke a thread you poke spider with a mark of `%spider-input` and a vase of `[tid cage]`.
+
+- `tid` is the tid of the thread you want to poke
+- `cage` is whatever mark and vase you want to poke it with
 
 ## [Return Home](index.md)
