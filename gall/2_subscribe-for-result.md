@@ -89,7 +89,7 @@ Thread started successfully
 Result: foo
 ```
 
-Now try `thread-starter [%test-thread %bar]`. You should see:
+Now try `:thread-starter [%test-thread %bar]`. You should see:
 
 ```
 Thread started successfully
