@@ -154,7 +154,7 @@ Then we've added:
 
 ...to send some facts out to subscribers. Here we've used both `send-raw-card` and `send-raw-cards` to demonstrate both ways.
 
-**Note:** in practice you'd probably want to send facts on a predetermined path and just test the path of the incoming subscription rather than just accept whatever.
+**Note:** in practice you'd probably want to send facts on a predetermined path and just test the path of the incoming subscription rather than just accepting anything.
 
 Finally we've added:
 
