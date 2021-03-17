@@ -57,7 +57,7 @@ This is because threads typically do a bunch of I/O so it can't just immediately
 
 Strands are the building blocks of threads. A thread will typically compose multiple strands.
 
-A strand is a function of `strand-input:strand -> output:strand` and is define in `/lib/strand/hoon`. You can see the details of `strand-input` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L2-L21) and `output:strand` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L23-L48). At this stage you don't need to know the nitty-gritty but it's helpful to have a quick look through. We'll discuss these things in more detail later.
+A strand is a function of `strand-input:strand -> output:strand` and is defined in `/lib/strand/hoon`. You can see the details of `strand-input` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L2-L21) and `output:strand` [here](https://github.com/urbit/urbit/blob/master/pkg/arvo/lib/strand.hoon#L23-L48). At this stage you don't need to know the nitty-gritty but it's helpful to have a quick look through. We'll discuss these things in more detail later.
 
 A strand is a core that has three important arms:
 - `form` - the mold of the strand
