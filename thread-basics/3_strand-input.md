@@ -6,6 +6,51 @@ The input to a `strand` is defined in `/lib/strand/hoon` as:
 +$  strand-input  [=bowl in=(unit input)]
 ```
 
+When a thread is first started, spider will populate the `bowl` and provide it along with an `input` of `~`. If/when new input comes in (such as a poke, sign or watch) it will provide a new updated bowl along with the new input. 
+
+For example, here's a thread that gets the time from the bowl, runs an IO-less function that takes one or two seconds to compute, and then gets the time again:
+
+```
+ /-  spider
+ /+  *strandio 
+ =,  strand=strand:spider
+ |% 
+ ++  ackermann 
+   |=  [m=@ n=@] 
+   ?:  =(m 0)  +(n) 
+   ?:  =(n 0)  $(m (dec m), n 1) 
+   $(m (dec m), n $(n (dec n))) 
+ -- 
+ ^-  thread:spider
+ |=  arg=vase
+ =/  m  (strand ,vase)
+ ^-  form:m 
+ ;<  t1=@da  bind:m  get-time 
+ =/  ack  (ackermann 3 8) 
+ ;<  t2=@da  bind:m  get-time 
+ (pure:m !>([t1 t2])) 
+```
+
+Since it never does any IO, `t1` and `t2` are the same: `[~2021.3.17..07.47.39..e186 ~2021.3.17..07.47.39..e186]`. However, if we replace the ackermann function with a 2 second `sleep` from strandio:
+
+```
+/-  spider 
+/+  *strandio
+=,  strand=strand:spider 
+^-  thread:spider 
+|=  arg=vase 
+=/  m  (strand ,vase) 
+^-  form:m
+;<  t1=@da  bind:m  get-time
+;<  ~       bind:m  (sleep ~s2)
+;<  t2=@da  bind:m  get-time
+(pure:m !>([t1 t2]))
+```
+
+...and run it again we get different values for `t1` and `t2`: `[~2021.3.17..07.50.28..8a5d ~2021.3.17..07.50.30..8a66]`. This is because `sleep` gets a `%wake` sign back from `behn`, so spider updates the time in the bowl along with it.
+
+Now let's look at the contents of `bowl` and `input` in detail:
+
 ## bowl
 
 `bowl` is the following:
@@ -94,8 +139,6 @@ Various functions in `strandio` will check `input` and conditionally do things b
     `[%fail %timer-error u.error.sign-arvo.u.in.tin]
   ==
 ```
-
-You can of course also write your own function to handle inputs.
 
 # [Previous](2_micgal-and-bind.md) | [Next](4_strand-output.md)
 ## [Return Home](../index.md)

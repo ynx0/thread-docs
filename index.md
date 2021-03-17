@@ -12,8 +12,6 @@ These docs walk through the fundamental things you need to know to write threads
    - What strands receive as input
 4. [Strand Output](thread-basics/4_strand-output.md)
    - What strands produce
-5. [Custom Strands](thread-basics/5_custom-strands.md)
-   - Notes on writing your own strands rather than just using ready-made ones.
 
 ## Gall
 These docs walk through the basics of interacting with threads from gall agents.

@@ -20,9 +20,79 @@ So, for example, if you feed `2 2` into the following function:
 
 The resulting strand won't just produce `[#t/@ud q=4]`, but rather `[~ %done [#t/@ud q=4]]`.
 
-Note that spider doesn't actually return the codes themselves to thread subscribers, they're only used internally to manage the flow of the thread.
+**Note:** that spider doesn't actually return the codes themselves to thread subscribers, they're only used internally to manage the flow of the thread.
 
-Let's look at the meaning of each of the response codes.
+Since a strand is a function from the previously discussed `strand-input` to the output discussed here, you can compose a valid strand like:
+
+```
+|=  strand-input:strand
+[~ %done 'foo']
+```
+
+So this is a valid thread:
+
+```
+/-  spider 
+=,  strand=strand:spider 
+^-  thread:spider 
+|=  arg=vase 
+=/  m  (strand ,vase) 
+^-  form:m 
+|=  strand-input:strand
+[~ %done arg]
+```
+
+As is this:
+
+```
+/-  spider 
+=,  strand=strand:spider 
+|%
+++  my-function
+  =/  m  (strand ,@t)
+  ^-  form:m
+  |=  strand-input:strand
+  [~ %done 'foo']
+--
+^-  thread:spider 
+|=  arg=vase 
+=/  m  (strand ,vase) 
+^-  form:m
+;<  msg=@t  bind:m  my-function
+(pure:m !>(msg))
+```
+
+As is this:
+
+```
+/-  spider 
+=,  strand=strand:spider 
+^-  thread:spider 
+|=  arg=vase 
+=/  m  (strand ,vase) 
+^-  form:m 
+|=  strand-input:strand
+=/  umsg  !<  (unit @tas)  arg
+?~  umsg
+[~ %fail %no-arg ~]
+=/  msg=@tas  u.umsg
+?.  =(msg %foo)
+[~ %fail %not-foo ~]
+[~ %done arg]
+```
+
+Which works like:
+
+```
+> -mythread
+thread failed: %no-arg
+> -mythread %bar
+thread failed: %not-foo
+> -mythread %foo
+[~ %foo]
+```
+
+Now let's look at the meaning of each of the response codes.
 
 ### wait
 
@@ -44,5 +114,5 @@ Fail says to end the thread here and don't call any subsequent strands. It inclu
 
 Done means the computation was completed successfully and includes the result. When `spider` recieves a `%done` it will send the result it contains in a fact with a mark of `%thread-done` to subscribers and end the thread. When `bind` receives a `%done` it will extract the result and call the next gate with it.
 
-# [Previous](3_strand-input.md) | [Next](5_custom-strands.md)
+# [Previous](3_strand-input.md)
 ## [Return Home](../index.md)
