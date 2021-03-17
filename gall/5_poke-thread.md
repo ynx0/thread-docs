@@ -109,7 +109,7 @@ In our thread we've added:
 ;<  vmsg=vase   bind:m  (take-poke %foo)
 ```
 
-`take-poke` is a `strandio` function that just waits for a poke with the given mark and skips everything else. In this case we've specified a mark of `%foo`. Once our thread gets a poke with this mark return it as a result with `(pure:m vmsg)`. When our agent gets that it just prints it.
+`take-poke` is a `strandio` function that just waits for a poke with the given mark and skips everything else. In this case we've specified a mark of `%foo`. Once our thread gets a poke with this mark it returns it as a result with `(pure:m vmsg)`. When our agent gets that it just prints it.
 
 # [Previous](4_stop-thread.md)
 ## [Return Home](../index.md)
