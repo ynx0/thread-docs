@@ -32,6 +32,8 @@ These docs walk through the basics of interacting with threads from gall agents.
    - How to use `main-loop` in `strandio` to try an input against multiple functions.
 - [Poke an agent](examples/poke-agent.md)
    - Example of poking an agent from a thread.
+- [Scry](examples/scry.md)
+   - Scry arvo or an agent.
 
 ## [Reference](reference.md)
 Basic reference information. For usage of particular `strandio` functions just refer directly to `/lib/strandio/hoon` since they're largely self-explanatory.
