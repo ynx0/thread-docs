@@ -1,6 +1,6 @@
 # Micgal and Bind
 
-Having looked at `form` and `pure`, we'll now look at the last `strand` arm `bind`. Bind is typically used in combination with the micgal rune (`;<`).
+Having looked at `form` and `pure`, we'll now look at the last `strand` arm `bind`. Bind is typically used in combination with micgal (`;<`).
 
 ## Micgal
 
