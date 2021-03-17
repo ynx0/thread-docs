@@ -75,4 +75,10 @@ To poke a thread you poke spider with a mark of `%spider-input` and a vase of `[
 - `tid` is the tid of the thread you want to poke
 - `cage` is whatever mark and vase you want to poke it with
 
+#### Example
+
+```
+[%pass /some-path %agent [our.bowl %spider] %poke %spider-input !>([tid %foo !>('foooo')])]
+```
+
 ## [Return Home](index.md)
