@@ -12,6 +12,7 @@ These docs walk through the fundamental things you need to know to write threads
    - What strands receive as input
 4. [Strand Output](thread-basics/4_strand-output.md)
    - What strands produce
+5. [Summary](thread-basics/5_summary.md)
 
 ## Gall
 These docs walk through the basics of interacting with threads from gall agents.
@@ -34,6 +35,8 @@ These docs walk through the basics of interacting with threads from gall agents.
    - Example of poking an agent from a thread.
 - [Scry](examples/scry.md)
    - Scry arvo or an agent.
+- [Take a fact](examples/take-fact.md)
+   - Subscribe to an agent and receive a fact.
 
 ## [Reference](reference.md)
 Basic reference information. For usage of particular `strandio` functions just refer directly to `/lib/strandio/hoon` since they're largely self-explanatory.
