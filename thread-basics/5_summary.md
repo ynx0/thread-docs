@@ -1,5 +1,9 @@
 # Summary
 
+That's basically all you need to know to write threads. The best way to get a good handle on them is just to experiment with some `strandio` functions. For information on running threads from gall agents, see [here](../index.md#gall) and for some examples see [here](../index.md#how-tos--examples).
+
+Now here's a quick recap of the main points covered:
+
 ## Spider
 
 - is the gall agent that manages threads.

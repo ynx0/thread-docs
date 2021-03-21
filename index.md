@@ -30,7 +30,7 @@ These docs walk through the basics of interacting with threads from gall agents.
 - [Start a child thread](examples/start-thread-from-thread.md)
    - Starting and managing child threads.
 - [Main Loop](examples/main-loop.md)
-   - How to use `main-loop` in `strandio` to try an input against multiple functions.
+   - Some notes and examples of the `strandio` function `main-loop`.
 - [Poke an agent](examples/poke-agent.md)
    - Example of poking an agent from a thread.
 - [Scry](examples/scry.md)
