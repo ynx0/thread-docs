@@ -4,8 +4,9 @@
 
 1. lets you create a loop
 2. lets you try the same input against multiple functions
+3. queues input on `%skip` and then dequeues from the beginning on `%done`
 
-**Note:** It also queues input on `%skip` but I haven't figure that out yet.
+`main-loop` takes a list of functions as its argument but only moves to the next item in the list on a `[%fail %ignore ~]` (whose usage we'll describe in the second example). In other cases it restarts from the top, so providing multiple functions is only useful for trying the same input against multiple functions.
 
 ## Create a loop
 
