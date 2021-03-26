@@ -4,7 +4,7 @@ Here's an example of a barebones gall agent that just starts a thread:
 
 #### thread-starter.hoon
 
-```
+```hoon
 /+  default-agent, dbug
 =*  card  card:agent:gall
 %-  agent:dbug
@@ -58,7 +58,7 @@ And here's a minimal thread to test it with:
 
 #### test-thread.hoon
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 
@@ -109,7 +109,7 @@ Thread failed to start
 
 We can ignore the input logic, here's the important part:
 
-```
+```hoon
 =/  tid  `@ta`(cat 3 'thread_' (scot %uv (sham eny.bowl)))
 =/  ta-now  `@ta`(scot %da now.bowl)
 =/  start-args  [~ `tid p.q.vase !>(q.q.vase)]
@@ -123,7 +123,7 @@ You can generate a tid any way you like, just make sure it's unique. Here we jus
 
 Then it's just a poke to `%spider` with the mark `%spider-start` and a vase containing [start-args](../reference.md#start-thread). Spider will then respond with a `%poke-ack` with a `(unit tang)` which will be `~` if it started successfully or else contain an error and a traceback if it failed. Here we test for this and print the result:
 
-```
+```hoon
 ++  on-agent
    |=  [=wire =sign:agent:gall]
    ^-  (quip card _this)

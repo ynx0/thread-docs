@@ -12,7 +12,7 @@
 
 Poke `spider` with mark `%spider-start` and a vase containing `start-args`:
 
-```
+```hoon
 +$  start-args
   [parent=(unit tid) use=(unit tid) file=term =vase]
 ```
@@ -26,7 +26,7 @@ Where:
 
 #### Example
 
-```
+```hoon
 [%pass /some-path %agent [our.bowl %spider] %poke %spider-start !>([~ `tid %foo !>(~)])]
 ```
 
@@ -39,7 +39,7 @@ Poke `spider` with mark `%spider-stop` and a vase containing `[tid ?]`, where:
 
 #### Example
 
-```
+```hoon
 [%pass /some-path %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y)]
 ```
 
@@ -54,7 +54,7 @@ The result will have a mark of either `%thread-fail` or `%thread-done`.
 
 #### Example
 
-```
+```hoon
 [%pass /some-path %agent [our.bowl %spider] %watch /thread-result/[tid]]
 ```
 
@@ -64,7 +64,7 @@ You can subscribe to a thread on `/thread/[tid]/path`. Note this is for facts se
 
 #### Example
 
-```
+```hoon
 [%pass /some-path %agent [our.bowl %spider] %watch /thread/[tid]/thread-path]
 ```
 
@@ -77,7 +77,7 @@ To poke a thread you poke spider with a mark of `%spider-input` and a vase of `[
 
 #### Example
 
-```
+```hoon
 [%pass /some-path %agent [our.bowl %spider] %poke %spider-input !>([tid %foo !>('foooo')])]
 ```
 

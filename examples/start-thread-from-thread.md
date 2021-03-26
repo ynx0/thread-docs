@@ -4,7 +4,7 @@ Here's a simple example of a thread that starts another thread:
 
 ### parent.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -17,7 +17,8 @@ Here's a simple example of a thread that starts another thread:
 ```
 
 ### child.hoon
-```
+
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -39,7 +40,7 @@ foo
 
 `parent.hoon` just uses the `strandio` function `start-thread` to start `child.hoon`, and `child.hoon` just prints `foo` to the dojo. Since we got `foo` we can tell the second thread did, in fact, run.
 
-```
+```hoon
 ;<  tid=tid:spider   bind:m  (start-thread %child)
 ```
 
@@ -55,7 +56,7 @@ If we want to actually get the result of the thread we started, it's slightly mo
 
 ### parent.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -81,7 +82,7 @@ If we want to actually get the result of the thread we started, it's slightly mo
 
 ###  child.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -103,25 +104,25 @@ If we want to actually get the result of the thread we started, it's slightly mo
 
 `parent.hoon` is a bit more complicated so we'll look at it line-by-line
 
-```
+```hoon
 ;<  =bowl:spider  bind:m  get-bowl
 ```
 
 First we grab the bowl
 
-```
+```hoon
 =/  tid  `@ta`(cat 3 'strand_' (scot %uv (sham %child eny.bowl)))
 ```
 
 Then we generate a `tid` (thread ID) for the thread we're gonna start
 
-```
+```hoon
 ;<  ~             bind:m  (watch-our /awaiting/[tid] %spider /thread-result/[tid])
 ```
 
 We pre-emptively subscribe for the result. Spider sends the result at `/thread-result/<tid>` so that's where we subscribe.
 
-```
+```hoon
 ;<  ~             bind:m  %-  poke-our
                           :*  %spider
                               %spider-start
@@ -136,19 +137,19 @@ Spider takes a poke with a mark %spider-start and a vase containing `[parent=(un
 * `file` is the filename of the thread we want to start
 * `vase` is the vase it will be given as an argument when it's started
 
-```
+```hoon
 ;<  =cage         bind:m  (take-fact /awaiting/[tid])
 ```
 
 We wait for a fact which will be the result of the thread.
 
-```
+```hoon
 ;<  ~             bind:m  (take-kick /awaiting/[tid])
 ```
 
 Spider will kick us from the subscription when it ends the thread so we also take that kick.
 
-```
+```hoon
 ?+  p.cage  ~|([%strange-thread-result p.cage %child tid] !!)
   %thread-done  (pure:m q.cage)
   %thread-fail  (strand-fail !<([term tang] q.cage))
@@ -160,7 +161,8 @@ Finally we test whether the thread produced a `%thread-done` or a `%thread-fail`
 ## Stop a thread
 
 ### parent.hoon
-```
+
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -189,7 +191,7 @@ Finally we test whether the thread produced a `%thread-done` or a `%thread-fail`
 
 ### child.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -218,7 +220,7 @@ Finally we test whether the thread produced a `%thread-done` or a `%thread-fail`
 
 `parent.hoon` starts `child.hoon`, and then pokes spider like:
 
-```
+```hoon
 ;<  ~             bind:m  %-  poke-our
                           :*  %spider
                               %spider-stop

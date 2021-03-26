@@ -10,7 +10,7 @@ A strand produces a `[(list card) <response>]`. The first part is a list of card
 
 So, for example, if you feed `2 2` into the following function:
 
-```
+```hoon
   |=  [a=@ud b=@ud]
   =/  m  (strand ,vase) 
   ^-  form:m
@@ -24,14 +24,14 @@ The resulting strand won't just produce `[#t/@ud q=4]`, but rather `[~ %done [#t
 
 Since a strand is a function from the previously discussed `strand-input` to the output discussed here, you can compose a valid strand like:
 
-```
+```hoon
 |=  strand-input:strand
 [~ %done 'foo']
 ```
 
 So this is a valid thread:
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 
@@ -44,7 +44,7 @@ So this is a valid thread:
 
 As is this:
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 |%
@@ -64,7 +64,7 @@ As is this:
 
 As is this:
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 

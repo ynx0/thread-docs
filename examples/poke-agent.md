@@ -4,7 +4,7 @@ Here's a thread that lets you post a message to a chat in graph-store:
 
 #### post-msg.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio, *graph-store, *resource
 =,  strand=strand:spider

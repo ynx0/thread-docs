@@ -2,7 +2,7 @@
 
 The input to a `strand` is defined in `/lib/strand/hoon` as:
 
-```
+```hoon
 +$  strand-input  [=bowl in=(unit input)]
 ```
 
@@ -10,7 +10,7 @@ When a thread is first started, spider will populate the `bowl` and provide it a
 
 For example, here's a thread that gets the time from the bowl, runs an IO-less function that takes one or two seconds to compute, and then gets the time again:
 
-```
+```hoon
  /-  spider
  /+  *strandio 
  =,  strand=strand:spider
@@ -33,7 +33,7 @@ For example, here's a thread that gets the time from the bowl, runs an IO-less f
 
 Since it never does any IO, `t1` and `t2` are the same: `[~2021.3.17..07.47.39..e186 ~2021.3.17..07.47.39..e186]`. However, if we replace the ackermann function with a 2 second `sleep` from strandio:
 
-```
+```hoon
 /-  spider 
 /+  *strandio
 =,  strand=strand:spider 
@@ -55,7 +55,7 @@ Now let's look at the contents of `bowl` and `input` in detail:
 
 `bowl` is the following:
 
-```
+```hoon
 +$  bowl
   $:  our=ship
       src=ship
@@ -83,7 +83,7 @@ There are a number of functions in `strandio` to access the `bowl` contents like
 
 You can also write a function with a gate whose sample is `strand-input:strand` and access the bowl that way like:
 
-```
+```hoon
 /-  spider
 /+  strandio
 =,  strand=strand:spider 
@@ -107,7 +107,7 @@ You can also write a function with a gate whose sample is `strand-input:strand` 
 
 `input` is defined in libstrand as:
 
-```
+```hoon
 +$  input
   $%  [%poke =cage]
       [%sign =wire =sign-arvo]
@@ -123,7 +123,7 @@ You can also write a function with a gate whose sample is `strand-input:strand` 
 
 Various functions in `strandio` will check `input` and conditionally do things based on its contents. For example, `sleep` sets a `behn` timer and then calls `take-wake` to wait for a `%wake` sign from behn:
 
-```
+```hoon
 ++  take-wake
   |=  until=(unit @da)
   =/  m  (strand ,~)

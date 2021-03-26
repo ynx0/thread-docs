@@ -4,7 +4,7 @@ Here's a modified agent that pokes our thread. I've replaced some off the previo
 
 #### thread-starter.hoon
 
-```
+```hoon
 /+  default-agent, dbug
 =*  card  card:agent:gall
 %-  agent:dbug
@@ -68,7 +68,7 @@ And here we've modified the thread to take the poke and return it as the result:
 
 #### test-thread.hoon
 
-```
+```hoon
 /-  spider 
 /+  *strandio
 =,  strand=strand:spider 
@@ -92,7 +92,7 @@ Result: blah
 
 In our agent we've added this card:
 
-```
+```hoon
 [%pass /thread/[ta-now] %agent [our.bowl %spider] %poke %spider-input !>([tid %foo !>(q.q.vase)])]
 ```
 
@@ -105,7 +105,7 @@ In our case we've given it a mark of `%foo` and a vase of whatever `term` we pok
 
 In our thread we've added:
 
-```
+```hoon
 ;<  vmsg=vase   bind:m  (take-poke %foo)
 ```
 

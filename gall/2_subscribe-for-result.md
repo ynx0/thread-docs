@@ -3,7 +3,8 @@
 Here we've added an extra card to subscribe for the result and a couple of lines in on-agent to test if it succeeded:
 
 #### thread-starter.hoon
-```
+
+```hoon
 /+  default-agent, dbug
 =*  card  card:agent:gall
 %-  agent:dbug
@@ -68,7 +69,7 @@ Here we've added an extra card to subscribe for the result and a couple of lines
 
 #### test-thread.hoon
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 
@@ -100,7 +101,7 @@ Thread failed: not-foo
 
 In `on-poke` we've added an extra card *before* the `%spider-start` poke to subscribe for the result:
 
-```
+```hoon
 [%pass /thread/[ta-now] %agent [our.bowl %spider] %watch /thread-result/[tid]]
 ```
 
@@ -110,7 +111,7 @@ If the thread failed it will return a cage with a mark of `%thread-fail` and a v
 
 Note that spider will automatically `%kick` us from the subscription after ending the thread and returning the result.
 
-```
+```hoon
   %fact
 ?+    p.cage.sign  (on-agent:def wire sign)
     %thread-fail

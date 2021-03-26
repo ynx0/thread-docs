@@ -12,7 +12,8 @@ Here's a simple thread that will:
 - print the details of the latest base-hash to the dojo
 
 ### latest-hash.hoon
-```
+
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -85,7 +86,7 @@ Release: https://github.com/urbit/urbit/releases/tag/urbit-os-v2.39
 
 `fetch-json` takes a url as a tape, so we've added a core with the urls like:
 
-```
+```hoon
 =>
 |%
 ++  url-1  "https://www.whatsthelatestbasehash.com/latesthash.json"
@@ -95,13 +96,13 @@ Release: https://github.com/urbit/urbit/releases/tag/urbit-os-v2.39
 
 ...then just called `fetch-json` like:
 
-```
+```hoon
 ;<  js-latest=json  bind:m  (fetch-json url-1)
 ```
 
 We've added formatting and structure arms like:
 
-```
+```hoon
 ++  latest-format
   =,  dejs:format
   %-  ot

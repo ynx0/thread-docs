@@ -4,7 +4,7 @@ Taking a fact from an agent, arvo or whatever is easy. First you subscribe using
 
 #### print-msg.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio, *graph-store
 =,  strand=strand:spider
@@ -44,13 +44,13 @@ Create a chat on your fake zod if you don't have one already, then save it in `/
 
 First we call `watch-our` to subscribe:
 
-```
+```hoon
 ;<  ~        bind:m  (watch-our /graph-store %graph-store /updates)
 ```
 
 We've spun the next part out into its own core, but it's just a `take-fact` to receive the update:
 
-```
+```hoon
   ;<  =cage  bind:m  (take-fact /graph-store)
 ```
 

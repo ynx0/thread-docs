@@ -6,7 +6,7 @@ Here we've added another card to subscribe for any facts sent by the thread and 
 
 #### thread-starter.hoon
 
-```
+```hoon
 /+  default-agent, dbug
 =*  card  card:agent:gall
 %-  agent:dbug
@@ -78,7 +78,7 @@ We've also made some changes to the thread:
 
 #### test-thread.hoon
 
-```
+```hoon
 /-  spider 
 /+  *strandio
 =,  strand=strand:spider 
@@ -127,7 +127,7 @@ Thread failed: not-foo
 
 In our agent's `on-poke` arm we've added another card to subscribe to `/thread/[tid]/updates`:
 
-```
+```hoon
 [%pass /thread/updates/[ta-now] %agent [our.bowl %spider] %watch /thread/[tid]/updates]
 ```
 
@@ -137,7 +137,7 @@ Threads always send facts on `/thread/[tid]/some-path`. The thread itself will s
 
 In the thread we've first added:
 
-```
+```hoon
 ;<  =path   bind:m  take-watch
 ```
 
@@ -145,7 +145,7 @@ In the thread we've first added:
 
 Then we've added:
 
-```
+```hoon
 ;<  ~       bind:m  (send-raw-card [%give %fact ~[path] %update !>("message 1")])
 ;<  ~       bind:m  %-  send-raw-cards
                     :~  [%give %fact ~[path] %update !>("message 2")]
@@ -160,7 +160,7 @@ Then we've added:
 
 Finally we've added:
 
-```
+```hoon
 ;<  ~       bind:m  (send-raw-card [%give %kick ~[path] ~])
 ```
 
@@ -168,7 +168,7 @@ Finally we've added:
 
 Back in our agent: In the `on-agent` arm we've added:
 
-```
+```hoon
   %update
 =/  msg  !<  tape  q.cage.sign
 %-  (slog leaf+msg ~)

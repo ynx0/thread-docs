@@ -16,7 +16,7 @@ Here's an example of a thread that subscribes to `graph-store` for updates and n
 
 #### chat-watch.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio, *graph-store
 =,  strand=strand:spider
@@ -78,7 +78,7 @@ To stop this hit backspace and then run `:spider|kill`.
 
 First we subscribe to graph-store for updates with `watch-our`, then we call the watcher arm of the core we have added. Watcher just calls `main-loop`:
 
-```
+```hoon
 =/  m  (strand ,~)
 ^-  form:m
 %-  (main-loop ,~)
@@ -87,7 +87,7 @@ First we subscribe to graph-store for updates with `watch-our`, then we call the
 
 ...with a list of functions. In this case we've just given it one. Our function first calls `take-fact`:
 
-```
+```hoon
 ;<  =cage  bind:m  (take-fact /graph-store)
 ```
 
@@ -108,7 +108,8 @@ baz
 ```
 
 #### tester.hoon
-```
+
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider
@@ -126,7 +127,7 @@ baz
 
 #### tested.hoon
 
-```
+```hoon
 /-  spider
 /+  *strandio
 =,  strand=strand:spider

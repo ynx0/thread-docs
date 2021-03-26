@@ -3,7 +3,8 @@
 Here's an example of a thread that scries ames for the IP address & port of a ship and nicely prints it:
 
 #### get-ip.hoon
-```
+
+```hoon
 /-  spider
 /+  strandio
 =,  strand=strand:spider 
@@ -58,7 +59,7 @@ Here we use the `strandio` function `scry` which takes an argument of `[mold pat
    
 In our case the mold is `(list lane:ames)` and the path is `/ax//peers/(scot %p target)/forward-lane` like:
 
-```
+```hoon
 ;<  lanes=(list lane:ames)  bind:m  (scry:strandio (list lane:ames) /ax//peers/(scot %p target)/forward-lane)
 ```
 

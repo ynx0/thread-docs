@@ -6,19 +6,20 @@ Having looked at `form` and `pure`, we'll now look at the last `strand` arm `bin
 
 Micgal takes four arguments like `spec hoon hoon hoon`. Given `;<  a  b  c  d`, it composes them like `((b ,a) c |=(a d))`. So, for example, these two expressions are equivalent:
 
-```
+```hoon
 ;<  ~  bind:m  (sleep:strandio ~s2)
 (pure:m !>(~))
 ```
 
 and
-```
+
+```hoon
 ((bind:m ,~) (sleep:strandio ~s2) |=(~ (pure:m !>(~))))
 ```
 
 Micgal exists simply for readability. The above isn't too bad, but consider this:
 
-```
+```hoon
 ;<  a  b  c
 ;<  d  e  f
 ;<  g  h  i
@@ -58,7 +59,7 @@ Since the second gate may itself contain another `;<  <type>  bind:m  ...`, you 
 
 Here's a simple thread with a couple of `strandio` functions:
 
-```
+```hoon
 /-  spider
 /+  strandio
 =,  strand=strand:spider 

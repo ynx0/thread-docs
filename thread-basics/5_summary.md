@@ -19,7 +19,7 @@ Now here's a quick recap of the main points covered:
 
 #### Example
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 

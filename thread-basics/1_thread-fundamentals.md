@@ -45,7 +45,9 @@ There are three files that matter:
 
 `/sur/spider/hoon` defines a thread as:
 
-`+$  thread  $-(vase _*form:(strand ,vase))`
+```hoon
++$  thread  $-(vase _*form:(strand ,vase))
+```
 
 That is, a gate which takes a `vase` and returns the `form` of a `strand` that produces a `vase`. This is a little confusing and we'll look at each part in detail later. For now, note that the thread doesn't just produce a result, it actually produces a strand that takes input and produces output from which a result can be extracted. It works something like this:
 
@@ -70,7 +72,7 @@ A strand must be specialised to produce a particular type like `(strand ,<type>)
 
 Strands are conventionally given the face `m` like:
 
-```
+```hoon
 =/  m  (strand ,vase)
 ...
 ```
@@ -83,7 +85,7 @@ Strands are conventionally given the face `m` like:
 
 The `form` arm is the mold of the strand, suitable for casting. The two other arms produce `form`s so you'll cast everything to this like:
 
-```
+```hoon
 =/  m  (strand ,@ud)
 ^-  form:m
 ...
@@ -97,7 +99,7 @@ We'll cover `bind` later.
 
 ## A trivial thread
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ^-  thread:spider 
@@ -123,38 +125,38 @@ Save the above code as a file in `ted/mythread.hoon` and `|commit` it. Run it wi
 
 We'll go through it line-by line.
 
-```
+```hoon
 /-  spider 
 =,  strand=strand:spider 
 ```
 
 First we import `/sur/spider/hoon` which includes `/lib/strand/hoon` and give give the latter the face `strand` for convenience.
 
-```
+```hoon
 ^-  thread:spider
 ```
 
 We make it a thread by casting it to `thread:spider`
 
-```
+```hoon
 |=  arg=vase
 ```
 
 We create a gate that takes a vase, the first part of the previously mentioned thread definition.
 
-```
+```hoon
 =/  m  (strand ,vase)
 ```
 
 Inside the gate we create our `strand` specialised to produce a `vase` and give it the canonical face `m`.
 
-```
+```hoon
 ^-  form:m 
 ```
 
 We cast the output to `form` - the mold of the strand we created.
 
-```
+```hoon
 (pure:m arg)
 ```
 

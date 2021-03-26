@@ -4,7 +4,7 @@ Here we've added one last card to `on-poke` to stop the thread and a little extr
 
 #### thread-starter.hoon
 
-```
+```hoon
 /+  default-agent, dbug
 =*  card  card:agent:gall
 %-  agent:dbug
@@ -89,7 +89,7 @@ We've also added a `sleep` to the thread to keep it running for demonstration.
 
 #### test-thread.hoon
 
-```
+```hoon
 /-  spider 
 /+  *strandio
 =,  strand=strand:spider 
@@ -141,7 +141,7 @@ Thread failed: cancelled
 
 The card we've added to our agent:
 
-```
+```hoon
 [%pass /thread-stop/[ta-now] %agent [our.bowl %spider] %poke %spider-stop !>([tid %.y])]
 ```
 
